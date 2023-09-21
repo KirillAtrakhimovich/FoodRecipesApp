@@ -6,13 +6,25 @@
 //
 
 import UIKit
+import Moya
 
-class ViewController: UIViewController {
-
+class ViewController: NiblessViewController {
+    private let networkManager: NetworkManager
+    
+    init(networkManager: NetworkManager) {
+            self.networkManager = networkManager
+            super.init()
+        }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .blue
+        networkManager.getResult()
+    
+        
     }
+    
+    
 
 
 }
