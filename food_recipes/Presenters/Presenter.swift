@@ -7,5 +7,7 @@
 
 import UIKit
 
-class Presenter: NiblessViewController
+class Presenter: NiblessViewController {
+    
+}
 
