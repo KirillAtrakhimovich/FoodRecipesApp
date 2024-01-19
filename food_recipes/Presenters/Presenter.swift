@@ -5,4 +5,7 @@
 //  Created by Kirill Atrakhimovich on 13.10.23.
 //
 
-import Foundation
+import UIKit
+
+class Presenter: NiblessViewController
+
