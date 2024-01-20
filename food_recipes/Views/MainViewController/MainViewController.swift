@@ -57,9 +57,6 @@ extension MainViewController : UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MainViewCell.identifier, for: indexPath) as? MainViewCell else {
             return UITableViewCell()
         }
-//        guard let model = model else { return UITableViewCell() }
-//        let item = model.filteredGames[indexPath.row]
-//        cell.fillCell(game: item)
         if let recipe = recipes?.hits[indexPath.row].recipe {
                     cell.textLabel?.text = recipe.label
                     print(recipe.label)
