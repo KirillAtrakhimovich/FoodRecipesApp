@@ -32,12 +32,12 @@ class MainViewController: NiblessViewController, UITableViewDelegate {
     }
     
     private func getResponse() {
-        provider.request(.getRecipes) { result in
+        provider.request(.getRecipes) { [self] result in
             switch result {
             case .success(let moyaResponse):
                 let data = moyaResponse.data
                 self.recipes = try? JSONDecoder().decode(RecipesNetworkModel.self, from: data)
-        
+                print(self.recipes?.hits ?? "2")
               
             case .failure(let error):
                 print(error.errorDescription ?? "Unknown error")
@@ -50,20 +50,16 @@ class MainViewController: NiblessViewController, UITableViewDelegate {
 @available(iOS 15.0, *)
 extension MainViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return recipes?.hits.count ?? 0
+        return recipes?.hits.count ?? 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MainViewCell.identifier, for: indexPath) as? MainViewCell else {
             return UITableViewCell()
         }
-//        guard let model = model else { return UITableViewCell() }
-//        let item = model.filteredGames[indexPath.row]
-//        cell.fillCell(game: item)
         if let recipe = recipes?.hits[indexPath.row].recipe {
                     cell.textLabel?.text = recipe.label
                     print(recipe.label)
-                
                 }
         cell.isUserInteractionEnabled = true
         cell.selectionStyle = .none

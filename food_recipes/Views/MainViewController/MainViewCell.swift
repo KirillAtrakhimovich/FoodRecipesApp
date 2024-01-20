@@ -33,17 +33,10 @@ class MainViewCell: NiblessViewCell {
 //            gamePrice.setContentHuggingPriority(UILayoutPriority.defaultHigh, for:.horizontal)
 //        }
     
-    func fillCell(recipes: RecipesNetworkModel) {
-//
-//
-//           gameNameLabel.text = news.name
-//           authorLabel.text = "by \(news.author)"
-//           titleLabel.text = news.title
-//           dateLabel.text = getFormatedDate(dateString: "\(date)")
-       }
     
     private func setDishNameConstraints() {
         self.addSubview(dishName)
+        dishName.text = "123"
         NSLayoutConstraint.activate([
             dishName.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             dishName.centerYAnchor.constraint(equalTo: self.centerYAnchor)
