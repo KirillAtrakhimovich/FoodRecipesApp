@@ -11,5 +11,5 @@ import UIKit
 struct RecipeItem {
     var uri: String
     var label: String
-    var image: UIImage
+    var image: String
 }

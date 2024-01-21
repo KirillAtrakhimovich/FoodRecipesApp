@@ -23,6 +23,9 @@ class MainViewCell: NiblessViewCell {
             super.init(style: .default, reuseIdentifier: "MainViewListCell")
             self.backgroundColor = .green
             setDishNameConstraints()
+            isUserInteractionEnabled = true
+            selectionStyle = .none
+            contentView.isHidden = true
 //            contentPriority()
         }
     
@@ -32,11 +35,12 @@ class MainViewCell: NiblessViewCell {
 //            gameTitle.setContentHuggingPriority(UILayoutPriority.defaultLow, for:.horizontal)
 //            gamePrice.setContentHuggingPriority(UILayoutPriority.defaultHigh, for:.horizontal)
 //        }
-    
+    func setupInfo(recipe: RecipeItem) {
+        dishName.text = recipe.label
+    }
     
     private func setDishNameConstraints() {
         self.addSubview(dishName)
-        dishName.text = "123"
         NSLayoutConstraint.activate([
             dishName.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             dishName.centerYAnchor.constraint(equalTo: self.centerYAnchor)
