@@ -7,7 +7,27 @@
 
 import UIKit
 
-class Presenter: NiblessViewController {
+protocol MainViewProtocol: AnyObject {
+    func setTable(data: String)
+}
+
+protocol MainViewPresenterProtocol: AnyObject {
+    init(view: MainViewProtocol, model: RecipeItem)
+    func showTable()
+}
+
+class MainPresenter: MainViewPresenterProtocol {
+    func showTable() {
+        let data = self.model.label
+        self.view.setTable(data: data)
+    }
     
+    let view: MainViewProtocol
+    let model: RecipeItem
+    
+    required init(view: MainViewProtocol, model: RecipeItem) {
+        self.view = view
+        self.model = model
+    }
 }
 

@@ -11,6 +11,7 @@ import Moya
 @available(iOS 15.0, *)
 class MainViewController: NiblessViewController, UITableViewDelegate {
     let provider = MoyaProvider<MoyaExampleService>()
+    var presenter: MainViewPresenterProtocol!
     var recipeItems: [RecipeItem]? {
         didSet {
             mainView.tableView.reloadData()
@@ -41,8 +42,6 @@ class MainViewController: NiblessViewController, UITableViewDelegate {
                 let data = moyaResponse.data
                 let recipes = try? JSONDecoder().decode(RecipesNetworkModel.self, from: data)
                 recipeItems = recipes?.hits.map { RecipeItem(uri: $0.recipe.uri, label: $0.recipe.label, image: $0.recipe.image) }
-//                print(self.recipes?.hits ?? "2")
-            
             case .failure(let error):
                 print(error.errorDescription ?? "Unknown error")
             }
