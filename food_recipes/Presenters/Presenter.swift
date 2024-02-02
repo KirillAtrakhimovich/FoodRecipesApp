@@ -8,26 +8,36 @@
 import UIKit
 
 protocol MainViewProtocol: AnyObject {
-    func setTable(data: String)
+    func success(recipes: [RecipeItem])
+    func failure(errorMassage: String)
 }
 
 protocol MainViewPresenterProtocol: AnyObject {
-    init(view: MainViewProtocol, model: RecipeItem)
-    func showTable()
+    init(view: MainViewProtocol, networkService: NetworkServiceProtocol)
+    func getRecipes()
 }
 
 class MainPresenter: MainViewPresenterProtocol {
-    func showTable() {
-        let data = self.model.label
-        self.view.setTable(data: data)
+    
+    private var recipes = [RecipeItem]()
+    private weak var view: MainViewProtocol?
+    private let networkService: NetworkServiceProtocol
+    
+    required init(view: MainViewProtocol, networkService: NetworkServiceProtocol) {
+        self.view = view
+        self.networkService = networkService
     }
     
-    let view: MainViewProtocol
-    let model: RecipeItem
-    
-    required init(view: MainViewProtocol, model: RecipeItem) {
-        self.view = view
-        self.model = model
+    func getRecipes() {
+        networkService.getRecipes { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let recipes):
+                self.recipes = recipes.hits.map { RecipeItem(uri: $0.recipe.uri, label: $0.recipe.label, image: $0.recipe.image) }
+                self.view?.success(recipes: self.recipes)
+            case .failure(let error):
+                self.view?.failure(errorMassage: error.localizedDescription)
+            }
+        }
     }
 }
-
