@@ -9,8 +9,7 @@ import UIKit
 import Foundation
 
 @available(iOS 15.0, *)
-class MainView: UIView {
-    
+class MainView: UIView {   
     let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -33,8 +32,7 @@ class MainView: UIView {
             tableView.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor),
             tableView.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor),
             tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-
-            
         ])
     }
+    
 }

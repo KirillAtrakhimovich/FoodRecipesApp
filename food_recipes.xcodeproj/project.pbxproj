@@ -28,6 +28,8 @@
 		287B80CC2ACDA13B00755FCF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287B80CB2ACDA13B00755FCF /* SettingsView.swift */; };
 		287B80CE2ACDAB6900755FCF /* MainViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287B80CD2ACDAB6900755FCF /* MainViewCell.swift */; };
 		287B80D02ACDAC2200755FCF /* NiblessViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287B80CF2ACDAC2200755FCF /* NiblessViewCell.swift */; };
+		288E9E202B614F220082E842 /* Responses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288E9E1F2B614F220082E842 /* Responses.swift */; };
+		289C68232B5FFAA400689FD4 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289C68222B5FFAA400689FD4 /* ModuleBuilder.swift */; };
 		F64C62016A2D732D535608D3 /* Pods_food_recipes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEE3F4BDAC320AA0D36F70A3 /* Pods_food_recipes.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +57,8 @@
 		287B80CB2ACDA13B00755FCF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		287B80CD2ACDAB6900755FCF /* MainViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCell.swift; sourceTree = "<group>"; };
 		287B80CF2ACDAC2200755FCF /* NiblessViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiblessViewCell.swift; sourceTree = "<group>"; };
+		288E9E1F2B614F220082E842 /* Responses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Responses.swift; sourceTree = "<group>"; };
+		289C68222B5FFAA400689FD4 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 		764CBD8CF939A5F4527B5EB3 /* Pods-food_recipes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-food_recipes.release.xcconfig"; path = "Target Support Files/Pods-food_recipes/Pods-food_recipes.release.xcconfig"; sourceTree = "<group>"; };
 		AEE3F4BDAC320AA0D36F70A3 /* Pods_food_recipes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_food_recipes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF2302443680074EA9FB60A0 /* Pods-food_recipes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-food_recipes.debug.xcconfig"; path = "Target Support Files/Pods-food_recipes/Pods-food_recipes.debug.xcconfig"; sourceTree = "<group>"; };
@@ -93,6 +97,7 @@
 		28262D632AB9BF70009C4FB6 /* food_recipes */ = {
 			isa = PBXGroup;
 			children = (
+				289C68212B5FFA8200689FD4 /* Modules */,
 				2868D3662AD95D7900F7685E /* Presenters */,
 				2868D3652AD95D6900F7685E /* Views */,
 				286A33102ACF118500271898 /* Models */,
@@ -113,6 +118,7 @@
 			children = (
 				28262D7C2AB9C1FC009C4FB6 /* MoyaExampleService.swift */,
 				286097232ABC76B700E02CF1 /* RecipesNetworkModel.swift */,
+				288E9E1F2B614F220082E842 /* Responses.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -205,6 +211,14 @@
 				287B80CB2ACDA13B00755FCF /* SettingsView.swift */,
 			);
 			path = SettingsViewController;
+			sourceTree = "<group>";
+		};
+		289C68212B5FFA8200689FD4 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				289C68222B5FFAA400689FD4 /* ModuleBuilder.swift */,
+			);
+			path = Modules;
 			sourceTree = "<group>";
 		};
 		7777D48B7C54EA262760039D /* Frameworks */ = {
@@ -341,6 +355,7 @@
 				287B80CC2ACDA13B00755FCF /* SettingsView.swift in Sources */,
 				2868D3692AD9754300F7685E /* Presenter.swift in Sources */,
 				287B80C52ACDA0D000755FCF /* FavouritesViewController.swift in Sources */,
+				289C68232B5FFAA400689FD4 /* ModuleBuilder.swift in Sources */,
 				287B80BA2ACD9CDC00755FCF /* TabViewController.swift in Sources */,
 				287B80C72ACDA0DD00755FCF /* FavouritesView.swift in Sources */,
 				287B80BD2ACD9D4600755FCF /* MainView.swift in Sources */,
@@ -349,6 +364,7 @@
 				287B80C22ACDA06F00755FCF /* FindView.swift in Sources */,
 				28262D812AB9C4B6009C4FB6 /* NiblessViewController.swift in Sources */,
 				287B80C02ACDA04D00755FCF /* FindViewController.swift in Sources */,
+				288E9E202B614F220082E842 /* Responses.swift in Sources */,
 				287B80CA2ACDA10E00755FCF /* SettingsViewController.swift in Sources */,
 				28262D652AB9BF70009C4FB6 /* AppDelegate.swift in Sources */,
 				28262D7D2AB9C1FC009C4FB6 /* MoyaExampleService.swift in Sources */,
