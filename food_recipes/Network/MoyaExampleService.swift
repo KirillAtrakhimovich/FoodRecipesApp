@@ -23,6 +23,7 @@ extension MoyaExampleService: TargetType {
         switch self {
         case .getRecipes:
             return .requestParameters(parameters: ["type": "public", "q": "chicken", "app_id": "b528857e", "app_key": "259e86392961c89ca3a15be3dcab7a0f"], encoding: URLEncoding.default)
+            
         }
     }
 

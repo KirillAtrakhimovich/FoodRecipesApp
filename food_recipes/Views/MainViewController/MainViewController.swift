@@ -33,6 +33,8 @@ class MainViewController: NiblessViewController, UITableViewDelegate {
         mainView.tableView.dataSource = self
         mainView.tableView.delegate = self
     }
+    
+    
 }
 
 @available(iOS 15.0, *)
@@ -46,6 +48,11 @@ extension MainViewController : UITableViewDataSource {
             return UITableViewCell()
         }
         let recipe = recipeItems[indexPath.row]
+        presenter.uploadDishImage(imageURL: recipe.image) { [weak cell] image in
+            DispatchQueue.main.async {
+                cell?.updateImage(image: image)
+            }
+        }
         cell.setupInfo(recipe: recipe)
         return cell
     }
@@ -53,11 +60,12 @@ extension MainViewController : UITableViewDataSource {
 
 @available(iOS 15.0, *)
 extension MainViewController: MainViewProtocol {
-    func success(recipes: [RecipeItem]) {
+    
+    func getRecipesSuccess(recipes: [RecipeItem]) {
         recipeItems = recipes
     }
     
-    func failure(errorMassage: String) {
+    func getRecipesFailure(errorMassage: String) {
         print(errorMassage)
     }
 }
