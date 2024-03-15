@@ -8,17 +8,18 @@
 import UIKit
 
 protocol MainViewProtocol: AnyObject {
-    func success(recipes: [RecipeItem])
-    func failure(errorMassage: String)
+    func getRecipesSuccess(recipes: [RecipeItem])
+    func getRecipesFailure(errorMassage: String)
 }
 
 protocol MainViewPresenterProtocol: AnyObject {
     init(view: MainViewProtocol, networkService: NetworkServiceProtocol)
     func getRecipes()
+    func uploadDishImage(imageURL: String, completion: @escaping (UIImage) -> Void)
 }
 
 class MainPresenter: MainViewPresenterProtocol {
-    
+
     private var recipes = [RecipeItem]()
     private weak var view: MainViewProtocol?
     private let networkService: NetworkServiceProtocol
@@ -34,10 +35,26 @@ class MainPresenter: MainViewPresenterProtocol {
             switch result {
             case .success(let recipes):
                 self.recipes = recipes.hits.map { RecipeItem(uri: $0.recipe.uri, label: $0.recipe.label, image: $0.recipe.image) }
-                self.view?.success(recipes: self.recipes)
+                self.view?.getRecipesSuccess(recipes: self.recipes)
             case .failure(let error):
-                self.view?.failure(errorMassage: error.localizedDescription)
+                self.view?.getRecipesFailure(errorMassage: error.localizedDescription)
             }
         }
+    }
+    
+    func uploadDishImage(imageURL: String, completion: @escaping (UIImage) -> Void) {
+        networkService.downloadImage(imageURL: imageURL) { result in
+               switch result {
+               case .success(let dishData):
+                   
+                       guard let image = UIImage(data: dishData) else { return }
+                       completion(image)
+                       
+                   
+                  
+               case .failure(let error):
+                   print(error)
+           }
+       }
     }
 }
