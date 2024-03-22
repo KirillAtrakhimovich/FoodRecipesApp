@@ -14,8 +14,8 @@ class MainView: UIView {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(MainViewCell.self, forCellReuseIdentifier: MainViewCell.identifier)
-        tableView.backgroundColor = .blue
-        tableView.separatorColor = .black
+        tableView.backgroundColor = .clear
+        tableView.separatorColor = .gray
         return tableView
     }()
     

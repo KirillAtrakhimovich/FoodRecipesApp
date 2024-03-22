@@ -26,7 +26,7 @@ final class TabBarController: UITabBarController {
             createNavController(for: ModuleBuilder.createModule(), title: "Home", image: UIImage(systemName: "house")!),
             createNavController(for: FindViewCotroller(), title: "Find", image: UIImage(systemName: "magnifyingglass")!),
             createNavController(for: FavouritesViewController(), title: "Favourites", image: UIImage(systemName: "star.fill")!),
-            createNavController(for: FindViewCotroller(), title: "Settings", image: UIImage(systemName: "gear")!)
+            createNavController(for: SettingsViewController(), title: "Settings", image: UIImage(systemName: "gear")!)
         ]
     }
 
