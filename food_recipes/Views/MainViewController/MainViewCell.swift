@@ -14,8 +14,8 @@ class MainViewCell: NiblessViewCell {
     var dishTitle: UILabel = {
             var dishTitle = UILabel()
         dishTitle.translatesAutoresizingMaskIntoConstraints = false
-        dishTitle.textColor = .white
-        dishTitle.font = UIFont.systemFont(ofSize: 26.0)
+        dishTitle.textColor = .black
+        dishTitle.font = UIFont.systemFont(ofSize: 21.0)
         dishTitle.numberOfLines = 0
             return dishTitle
         }()
@@ -23,8 +23,8 @@ class MainViewCell: NiblessViewCell {
     var dishSubtitle: UILabel = {
             var dishSubtitle = UILabel()
         dishSubtitle.translatesAutoresizingMaskIntoConstraints = false
-        dishSubtitle.textColor = .black
-        dishSubtitle.font = UIFont.systemFont(ofSize: 18.0)
+        dishSubtitle.textColor = .gray
+        dishSubtitle.font = UIFont.systemFont(ofSize: 16.0)
         dishSubtitle.text = "Subtitle"
         dishSubtitle.numberOfLines = 0
             return dishSubtitle
@@ -32,14 +32,18 @@ class MainViewCell: NiblessViewCell {
     var favouriteButton: UIButton = {
             var favouriteButton = UIButton()
         favouriteButton.translatesAutoresizingMaskIntoConstraints = false
-        favouriteButton.setImage(UIImage(systemName: "star"), for: .normal)
+        let originalImage = UIImage(systemName: "star.fill")
+        let resizedImage = originalImage?.resizableImage(withCapInsets: .zero, resizingMode: .tile)
+        favouriteButton.setImage(resizedImage, for: .normal)
+        favouriteButton.tintColor = .gray
+        
             return favouriteButton
         }()
     
     var dishImage: UIImageView = {
         var dishImage = UIImageView()
         dishImage.translatesAutoresizingMaskIntoConstraints = false
-        dishImage.backgroundColor = .blue
+        dishImage.backgroundColor = .gray
         return dishImage
     }()
     
@@ -55,7 +59,7 @@ class MainViewCell: NiblessViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: .default, reuseIdentifier: "MainViewListCell")
-            self.backgroundColor = .green
+        self.backgroundColor = .clear
             setDishImage()
             setTitleAndSubtitleView()
             setFavouriteButton()
@@ -110,8 +114,9 @@ class MainViewCell: NiblessViewCell {
     private func setFavouriteButton() {
         self.addSubview(favouriteButton)
         NSLayoutConstraint.activate([
-            favouriteButton.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor,  constant: -10),
-            favouriteButton.leftAnchor.constraint(equalTo: titleAndSubtitleView.rightAnchor, constant: 20),
+            favouriteButton.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor,  constant: -15),
+            favouriteButton.leftAnchor.constraint(equalTo: titleAndSubtitleView.rightAnchor, constant: 15),
+            
             favouriteButton.centerYAnchor.constraint(equalTo: self.centerYAnchor)
         ])
     }

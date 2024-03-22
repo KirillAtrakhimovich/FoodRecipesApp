@@ -46,7 +46,6 @@ class MainPresenter: MainViewPresenterProtocol {
         networkService.downloadImage(imageURL: imageURL) { result in
                switch result {
                case .success(let dishData):
-                   
                        guard let image = UIImage(data: dishData) else { return }
                        completion(image)
                        
