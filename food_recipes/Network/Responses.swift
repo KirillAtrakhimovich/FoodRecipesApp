@@ -9,14 +9,15 @@ import UIKit
 import Moya
 
 protocol NetworkServiceProtocol {
-    func getRecipes(completion: @escaping (Result<RecipesNetworkModel, Error>) -> Void)
+    func getRecipes(input: GetRecipesInput, completion: @escaping (Result<RecipesNetworkModel, Error>) -> Void)
+    func downloadImage(imageURL: String, completion: @escaping (Result<Data, Error>) -> Void)
 }
 
 final class NetworkService: NetworkServiceProtocol {
     private let provider = MoyaProvider<MoyaExampleService>()
     
-    func getRecipes(completion: @escaping (Result<RecipesNetworkModel, Error>) -> Void) {
-        provider.request(.getRecipes) { result in
+    func getRecipes(input: GetRecipesInput, completion: @escaping (Result<RecipesNetworkModel, Error>) -> Void) {
+        provider.request(.getRecipes(input: input)) { result in
             switch result {
             case .success(let moyaResponse):
                 let data = moyaResponse.data
@@ -25,17 +26,33 @@ final class NetworkService: NetworkServiceProtocol {
                     return
                 }
                 completion(.success(recipes))
-                
-                
-//               
-//                self.labels = recipeItems
-//                self.view.success()
+                print(recipes)
                 
             case .failure(let error):
-//                self.view.failure()
-//                print(error.errorDescription ?? "Unknown error")
                 completion(.failure(error))
             }
         }
     }
+    
+    func downloadImage(imageURL: String, completion: @escaping (Result<Data, Error>) -> Void) {
+            guard let downoladImageURL = URL(string: imageURL) else {
+                return
+            }
+            
+            let request = URLRequest(url: downoladImageURL)
+            
+            URLSession.shared.dataTask(with: request) { data, _, error in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+                
+                guard let data = data else {
+//                    completion(.failure(NetworkError.emptyData))
+                    return
+                }
+                completion(.success(data))
+                
+            }.resume()
+        }
 }

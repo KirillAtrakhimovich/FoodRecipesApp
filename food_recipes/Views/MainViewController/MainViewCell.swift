@@ -11,46 +11,121 @@ import UIKit
 class MainViewCell: NiblessViewCell {
     static let identifier = "MainViewListCell"
     
-    var dishName: UILabel = {
-            var dishName = UILabel()
-        dishName.translatesAutoresizingMaskIntoConstraints = false
-        dishName.textColor = .white
-        dishName.numberOfLines = 0
-            return dishName
+    var dishTitle: UILabel = {
+            var dishTitle = UILabel()
+        dishTitle.translatesAutoresizingMaskIntoConstraints = false
+        dishTitle.textColor = .black
+        dishTitle.font = UIFont.systemFont(ofSize: 21.0)
+        dishTitle.numberOfLines = 0
+            return dishTitle
         }()
+    
+    var dishSubtitle: UILabel = {
+            var dishSubtitle = UILabel()
+        dishSubtitle.translatesAutoresizingMaskIntoConstraints = false
+        dishSubtitle.textColor = .gray
+        dishSubtitle.font = UIFont.systemFont(ofSize: 16.0)
+        dishSubtitle.text = "Subtitle"
+        dishSubtitle.numberOfLines = 0
+            return dishSubtitle
+        }()
+    var favouriteButton: UIButton = {
+            var favouriteButton = UIButton()
+        favouriteButton.translatesAutoresizingMaskIntoConstraints = false
+        let originalImage = UIImage(systemName: "star.fill")
+        let resizedImage = originalImage?.resizableImage(withCapInsets: .zero, resizingMode: .tile)
+        favouriteButton.setImage(resizedImage, for: .normal)
+        favouriteButton.tintColor = .gray
+        
+            return favouriteButton
+        }()
+    
+    var dishImage: UIImageView = {
+        var dishImage = UIImageView()
+        dishImage.translatesAutoresizingMaskIntoConstraints = false
+        dishImage.backgroundColor = .gray
+        return dishImage
+    }()
+    
+    let titleAndSubtitleView: UIStackView = {
+        let titleAndSubtitleView = UIStackView()
+        titleAndSubtitleView.translatesAutoresizingMaskIntoConstraints = false
+        titleAndSubtitleView.spacing = 1
+        titleAndSubtitleView.axis = .vertical
+        titleAndSubtitleView.alignment = .fill
+        return titleAndSubtitleView
+    }()
+
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: .default, reuseIdentifier: "MainViewListCell")
-            self.backgroundColor = .green
-            setDishNameConstraints()
+        self.backgroundColor = .clear
+            setDishImage()
+            setTitleAndSubtitleView()
+            setFavouriteButton()
+            setTitleAndSubtitle()
             isUserInteractionEnabled = true
             selectionStyle = .none
             contentView.isHidden = true
-//            contentPriority()
+            contentPriority()
         }
     
-//    private func contentPriority() {
-//            gameTitle.setContentCompressionResistancePriority(UILayoutPriority.defaultLow, for: .horizontal)
-//            gamePrice.setContentCompressionResistancePriority(UILayoutPriority.defaultHigh, for: .horizontal)
-//            gameTitle.setContentHuggingPriority(UILayoutPriority.defaultLow, for:.horizontal)
-//            gamePrice.setContentHuggingPriority(UILayoutPriority.defaultHigh, for:.horizontal)
-//        }
+    private func contentPriority() {
+        dishTitle.setContentCompressionResistancePriority(UILayoutPriority.defaultLow, for: .horizontal)
+        favouriteButton.setContentCompressionResistancePriority(UILayoutPriority.defaultHigh, for: .horizontal)
+        dishTitle.setContentHuggingPriority(UILayoutPriority.defaultLow, for:.horizontal)
+        favouriteButton.setContentHuggingPriority(UILayoutPriority.defaultHigh, for:.horizontal)
+        }
+    
     func setupInfo(recipe: RecipeItem) {
-        dishName.text = recipe.label
+        dishTitle.text = recipe.label
     }
     
-    private func setDishNameConstraints() {
-        self.addSubview(dishName)
+    func updateImage(image: UIImage) {
+        dishImage.image = image
+    }
+    
+    private func setDishImage() {
+        self.addSubview(dishImage)
         NSLayoutConstraint.activate([
-            dishName.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            dishName.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+            dishImage.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor,  constant: 10),
+            dishImage.heightAnchor.constraint(equalToConstant: 50),
+            dishImage.widthAnchor.constraint(equalToConstant: 50),
+            dishImage.centerYAnchor.constraint(equalTo: self.centerYAnchor),
         ])
     }
     
+    private func setTitleAndSubtitleView() {
+        self.addSubview(titleAndSubtitleView)
+        NSLayoutConstraint.activate([
+            titleAndSubtitleView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            titleAndSubtitleView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
+            titleAndSubtitleView.leftAnchor.constraint(equalTo: dishImage.rightAnchor, constant: 10),
+
+        ])
+    }
+    
+    private func setTitleAndSubtitle() {
+        titleAndSubtitleView.addArrangedSubview(dishTitle)
+        titleAndSubtitleView.addArrangedSubview(dishSubtitle)
+    }
+
+    
+    private func setFavouriteButton() {
+        self.addSubview(favouriteButton)
+        NSLayoutConstraint.activate([
+            favouriteButton.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor,  constant: -15),
+            favouriteButton.leftAnchor.constraint(equalTo: titleAndSubtitleView.rightAnchor, constant: 15),
+            
+            favouriteButton.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+        ])
+    }
+
     override func awakeFromNib() {
-            super.awakeFromNib()
-        }
-        override func setSelected(_ selected: Bool, animated: Bool) {
-            super.setSelected(selected, animated: animated)
-        }
+        super.awakeFromNib()
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
 }

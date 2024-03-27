@@ -24,9 +24,9 @@ final class TabBarController: UITabBarController {
     func setupVCs() {
         viewControllers = [
             createNavController(for: ModuleBuilder.createModule(), title: "Home", image: UIImage(systemName: "house")!),
-            createNavController(for: FindViewCotroller(), title: "Find", image: UIImage(systemName: "magnifyingglass")!),
+            createNavController(for: ModuleBuilder.createFindModule(), title: "Find", image: UIImage(systemName: "magnifyingglass")!),
             createNavController(for: FavouritesViewController(), title: "Favourites", image: UIImage(systemName: "star.fill")!),
-            createNavController(for: FindViewCotroller(), title: "Settings", image: UIImage(systemName: "gear")!)
+            createNavController(for: SettingsViewController(), title: "Settings", image: UIImage(systemName: "gear")!)
         ]
     }
 
