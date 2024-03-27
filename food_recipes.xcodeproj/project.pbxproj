@@ -15,6 +15,7 @@
 		28262D742AB9BF72009C4FB6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28262D722AB9BF72009C4FB6 /* LaunchScreen.storyboard */; };
 		28262D7D2AB9C1FC009C4FB6 /* MoyaExampleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28262D7C2AB9C1FC009C4FB6 /* MoyaExampleService.swift */; };
 		28262D812AB9C4B6009C4FB6 /* NiblessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28262D802AB9C4B6009C4FB6 /* NiblessViewController.swift */; };
+		284A2EC82BB204EE00AD37B2 /* GetRecipesInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284A2EC72BB204EE00AD37B2 /* GetRecipesInput.swift */; };
 		286097242ABC76B700E02CF1 /* RecipesNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286097232ABC76B700E02CF1 /* RecipesNetworkModel.swift */; };
 		2868D3692AD9754300F7685E /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2868D3682AD9754300F7685E /* MainPresenter.swift */; };
 		286A33122ACF119B00271898 /* RecipeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286A33112ACF119B00271898 /* RecipeItem.swift */; };
@@ -46,6 +47,7 @@
 		28262D752AB9BF72009C4FB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28262D7C2AB9C1FC009C4FB6 /* MoyaExampleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaExampleService.swift; sourceTree = "<group>"; };
 		28262D802AB9C4B6009C4FB6 /* NiblessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiblessViewController.swift; sourceTree = "<group>"; };
+		284A2EC72BB204EE00AD37B2 /* GetRecipesInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRecipesInput.swift; sourceTree = "<group>"; };
 		286097232ABC76B700E02CF1 /* RecipesNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesNetworkModel.swift; sourceTree = "<group>"; };
 		2868D3682AD9754300F7685E /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		286A33112ACF119B00271898 /* RecipeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeItem.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 		28262D7B2AB9C1C9009C4FB6 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				284A2EC62BB204D000AD37B2 /* Models */,
 				28262D7C2AB9C1FC009C4FB6 /* MoyaExampleService.swift */,
 				286097232ABC76B700E02CF1 /* RecipesNetworkModel.swift */,
 				288E9E1F2B614F220082E842 /* Responses.swift */,
@@ -142,6 +145,14 @@
 				287B80CF2ACDAC2200755FCF /* NiblessViewCell.swift */,
 			);
 			path = Nibless;
+			sourceTree = "<group>";
+		};
+		284A2EC62BB204D000AD37B2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				284A2EC72BB204EE00AD37B2 /* GetRecipesInput.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		2868D3652AD95D6900F7685E /* Views */ = {
@@ -361,6 +372,7 @@
 				287B80CC2ACDA13B00755FCF /* SettingsView.swift in Sources */,
 				2868D3692AD9754300F7685E /* MainPresenter.swift in Sources */,
 				287B80C52ACDA0D000755FCF /* FavouritesViewController.swift in Sources */,
+				284A2EC82BB204EE00AD37B2 /* GetRecipesInput.swift in Sources */,
 				289C68232B5FFAA400689FD4 /* ModuleBuilder.swift in Sources */,
 				287B80BA2ACD9CDC00755FCF /* TabViewController.swift in Sources */,
 				287B80C72ACDA0DD00755FCF /* FavouritesView.swift in Sources */,

@@ -18,7 +18,6 @@ class FindViewCell: NiblessViewCell {
         dishTitle.textColor = .black
         dishTitle.font = UIFont.systemFont(ofSize: 21.0)
         dishTitle.numberOfLines = 0
-        dishTitle.text = "JRATfafafadfaVA"
             return dishTitle
         }()
     
@@ -39,6 +38,10 @@ class FindViewCell: NiblessViewCell {
         ])
     }
     
+    func setupInfo(recipe: RecipeItem) {
+        dishTitle.text = recipe.label
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -47,3 +50,4 @@ class FindViewCell: NiblessViewCell {
         super.setSelected(selected, animated: animated)
     }
 }
+

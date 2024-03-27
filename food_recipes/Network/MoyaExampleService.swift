@@ -1,7 +1,7 @@
 import Moya
 
 enum MoyaExampleService {
-    case getRecipes
+    case getRecipes(input: GetRecipesInput)
 }
 
 extension MoyaExampleService: TargetType {
@@ -21,12 +21,13 @@ extension MoyaExampleService: TargetType {
     
     var task: Moya.Task {
         switch self {
-        case .getRecipes:
-            return .requestParameters(parameters: ["type": "public", "q": "chicken", "app_id": "b528857e", "app_key": "259e86392961c89ca3a15be3dcab7a0f"], encoding: URLEncoding.default)
-            
+        case .getRecipes(let input):
+            var parameters = ["type": "public", "app_id": "b528857e", "app_key": "259e86392961c89ca3a15be3dcab7a0f"]
+            if let search = input.search { parameters["q"] = search }
+            if let random = input.random { parameters["random"] = random.description }
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
         }
     }
-
     
     var headers: [String: String]? {
         return ["Content-type": "application/json"]

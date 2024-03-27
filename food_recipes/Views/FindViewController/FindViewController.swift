@@ -10,8 +10,14 @@ import UIKit
 
 class FindViewCotroller: NiblessViewController, UITableViewDelegate {
     
-    
-    let findView = FindView()
+    var presenter: FindViewPresenterProtocol!
+    private let findView = FindView()
+    private var recipeItems: [RecipeItem] = [] {
+        didSet {
+            findView.tableView.reloadData()
+        }
+    }
+  
     
     override func loadView() {
         view = findView
@@ -36,13 +42,20 @@ class FindViewCotroller: NiblessViewController, UITableViewDelegate {
 
 extension FindViewCotroller: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return recipeItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FindViewCell.identifier, for: indexPath) as? FindViewCell else {
                     return UITableViewCell()
                 }
+        let recipe = recipeItems[indexPath.row]
+//        presenter.uploadDishImage(imageURL: recipe.image) { [weak cell] image in
+//            DispatchQueue.main.async {
+//                cell?.updateImage(image: image)
+//            }
+//        }
+        cell.setupInfo(recipe: recipe)
         return cell
     }
     
@@ -51,10 +64,23 @@ extension FindViewCotroller: UITableViewDataSource {
 
 extension FindViewCotroller: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        model?.filterGames(with: searchText)
-//        customView.tableView.reloadData()
+        presenter.getRecipes(search: searchText)
     }
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(true)
     }
 }
+
+extension FindViewCotroller: FindViewProtocol {
+    
+    func getRecipesSuccess(recipes: [RecipeItem]) {
+        recipeItems = recipes
+    }
+    
+    func getRecipesFailure(errorMassage: String) {
+        print(errorMassage)
+    }
+}
+
+

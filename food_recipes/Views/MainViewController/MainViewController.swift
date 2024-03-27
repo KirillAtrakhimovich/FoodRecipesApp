@@ -40,7 +40,7 @@ class MainViewController: NiblessViewController, UITableViewDelegate {
 @available(iOS 15.0, *)
 extension MainViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        recipeItems.count
+         recipeItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

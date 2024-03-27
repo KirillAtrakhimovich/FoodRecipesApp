@@ -9,15 +9,15 @@ import UIKit
 import Moya
 
 protocol NetworkServiceProtocol {
-    func getRecipes(completion: @escaping (Result<RecipesNetworkModel, Error>) -> Void)
+    func getRecipes(input: GetRecipesInput, completion: @escaping (Result<RecipesNetworkModel, Error>) -> Void)
     func downloadImage(imageURL: String, completion: @escaping (Result<Data, Error>) -> Void)
 }
 
 final class NetworkService: NetworkServiceProtocol {
     private let provider = MoyaProvider<MoyaExampleService>()
     
-    func getRecipes(completion: @escaping (Result<RecipesNetworkModel, Error>) -> Void) {
-        provider.request(.getRecipes) { result in
+    func getRecipes(input: GetRecipesInput, completion: @escaping (Result<RecipesNetworkModel, Error>) -> Void) {
+        provider.request(.getRecipes(input: input)) { result in
             switch result {
             case .success(let moyaResponse):
                 let data = moyaResponse.data
@@ -26,6 +26,7 @@ final class NetworkService: NetworkServiceProtocol {
                     return
                 }
                 completion(.success(recipes))
+                print(recipes)
                 
             case .failure(let error):
                 completion(.failure(error))

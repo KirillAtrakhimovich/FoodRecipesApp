@@ -20,4 +20,12 @@ class ModuleBuilder: Builder {
         viewController.presenter = presenter
         return viewController
     }
+    
+    static func createFindModule() -> UIViewController {
+        let networkService = NetworkService()
+        let findViewController = FindViewCotroller()
+        let findPresenter = FindPresenter(view: findViewController, networkService: networkService)
+        findViewController.presenter = findPresenter
+        return findViewController
+    }
 }

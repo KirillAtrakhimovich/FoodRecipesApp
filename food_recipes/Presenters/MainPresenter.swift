@@ -30,7 +30,7 @@ class MainPresenter: MainViewPresenterProtocol {
     }
     
     func getRecipes() {
-        networkService.getRecipes { [weak self] result in
+        networkService.getRecipes(input: GetRecipesInput(random: true)) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let recipes):
@@ -48,9 +48,6 @@ class MainPresenter: MainViewPresenterProtocol {
                case .success(let dishData):
                        guard let image = UIImage(data: dishData) else { return }
                        completion(image)
-                       
-                   
-                  
                case .failure(let error):
                    print(error)
            }
