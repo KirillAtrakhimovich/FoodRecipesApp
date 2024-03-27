@@ -50,11 +50,6 @@ extension FindViewCotroller: UITableViewDataSource {
                     return UITableViewCell()
                 }
         let recipe = recipeItems[indexPath.row]
-//        presenter.uploadDishImage(imageURL: recipe.image) { [weak cell] image in
-//            DispatchQueue.main.async {
-//                cell?.updateImage(image: image)
-//            }
-//        }
         cell.setupInfo(recipe: recipe)
         return cell
     }
